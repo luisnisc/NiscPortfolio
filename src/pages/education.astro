@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import CardEducation from "../components/CardEducation.astro";
+---
+
+<Layout title="Education">
+    
+        <Navbar/>
+        <main class=" text-white">
+        <section class="container mx-auto  mt-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <CardEducation 
+                
+                EducationName="Higher Vocational Training" 
+                EducationTitle="Web Development" 
+                EducationDescription="This program provided me with comprehensive knowledge and skills in web development, including front-end and back-end technologies, databases, and web design principles."/>
+
+                <CardEducation 
+
+                EducationName="Intermediate Vocational Training" 
+                EducationTitle="Administrator of Networked Computer Systems" 
+                EducationDescription="This program focused on the administration and management of networked computer systems, covering topics such as network configuration, security, and troubleshooting."
+                
+                />
+                <CardEducation
+                
+                EducationName="Autodiadactism"
+                EducationTitle="Full-Stack Developer"
+                EducationDescription="I have been learning web development on my own for several years. I have experience with front-end technologies such as HTML, CSS, and JavaScript, as well as back-end technologies such as Node.js, Express, and MongoDB. Also I have experience with React, Next.js, Astro and other frameworks and libraries."
+
+                />
+            </div>
+        </section>
+    </main>
+</Layout>

@@ -1,0 +1,91 @@
+---
+import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2';
+
+const sendEmail = (e: Event) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', e.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
+        .then((result) => {
+            console.log(result.text);
+            Swal.fire({
+                title: 'Thank you!!',
+                text: 'The email has been correctly sent',
+                icon: 'success' as 'success',
+                confirmButtonText: 'OK',
+                background: '#1a202c', // Fondo oscuro
+                color: '#fff', // Texto blanco
+                confirmButtonColor: 'purple', // Color del botón de confirmación
+                customClass: {
+                    title: 'swal2-title',
+                    content: 'swal2-content'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/contact'; // Redirigir al usuario a la página /contact
+                }
+            });
+        }, (error) => {
+            console.log(error.text);
+            const formStatus = document.getElementById('form-status');
+            if (formStatus) {
+                formStatus.textContent = 'Oops! There was a problem submitting your form.';
+            }
+        });
+
+    (e.target as HTMLFormElement).reset();
+};
+---
+
+<form id="contact-form" class="mt-8" onsubmit={sendEmail}>
+    <label for="name" class="block text-white">Name:</label>
+    <input type="text" id="name" name="name" required class="w-full p-2 mt-2 mb-4 bg-gray-800 text-white border border-gray-600 rounded"/>
+    
+    <label for="email" class="block text-white">Email:</label>
+    <input type="email" id="email" name="email" required class="w-full p-2 mt-2 mb-4 bg-gray-800 text-white border border-gray-600 rounded"/>
+    
+    <label for="message" class="block text-white">Message:</label>
+    <textarea id="message" name="message" required class="w-full p-2 mt-2 mb-4 bg-gray-800 text-white border border-gray-600 rounded"></textarea>
+    
+    <button type="submit" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded">Send</button>
+    <p id="form-status" class="text-white mt-4"></p>
+</form>
+
+<script>
+import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2';
+
+document.getElementById('contact-form')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', event.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
+        .then((result) => {
+            console.log(result.text);
+            Swal.fire({
+                title: 'Thank you!!',
+                text: 'The email has been correctly sent',
+                icon: 'success' as 'success',
+                confirmButtonText: 'OK',
+                background: '#1a202c', // Fondo oscuro
+                color: '#fff', // Texto blanco
+                confirmButtonColor: 'purple', // Color del botón de confirmación
+                customClass: {
+                    title: 'swal2-title',
+                    content: 'swal2-content'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/contact'; // Redirigir al usuario a la página /contact
+                }
+            });
+        }, (error) => {
+            console.log(error.text);
+            const formStatus = document.getElementById('form-status');
+            if (formStatus) {
+                formStatus.textContent = 'Oops! There was a problem submitting your form.';
+            }
+        });
+
+    (event.target as HTMLFormElement).reset();
+});
+</script>
