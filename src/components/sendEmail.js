@@ -4,24 +4,33 @@ import Swal from 'sweetalert2';
 export const sendEmail = (event) => {
     event.preventDefault();
 
-    const serviceID = 'service_bztxy9o';
-    const templateID = 'template_5qvbwju';
-    const userID = 'ZniNuIPP76QlY4VtJ';
-
-    const target = event.target;
-
-    const templateParams = {
-        name: target.elements.namedItem('name').value,
-        email: target.elements.namedItem('email').value,
-        message: target.elements.namedItem('message').value,
-    };
-
-    emailjs.send(serviceID, templateID, templateParams, userID)
-        .then((response) => {
-            Swal.fire('Success', 'Email sent successfully!', 'success');
-            target.reset();
-        })
-        .catch((error) => {
-            Swal.fire('Error', 'Failed to send email. Please try again later.', 'error');
+    emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', event.target, 'ZniNuIPP76QlY4VtJ')
+        .then((result) => {
+            console.log(result.text);
+            Swal.fire({
+                title: 'Thank you!!',
+                text: 'The email has been correctly sent',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                background: '#1a202c', // Fondo oscuro
+                color: '#fff', // Texto blanco
+                confirmButtonColor: 'purple', // Color del botón de confirmación
+                customClass: {
+                    title: 'swal2-title',
+                    content: 'swal2-content'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/contact'; // Redirigir al usuario a la página /contact
+                }
+            });
+        }, (error) => {
+            console.log(error.text);
+            const formStatus = document.getElementById('form-status');
+            if (formStatus) {
+                formStatus.textContent = 'Oops! There was a problem submitting your form.';
+            }
         });
+
+    event.target.reset();
 };
