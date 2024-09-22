@@ -6,12 +6,12 @@ const sendEmail = (e: Event) => {
     e.preventDefault();
 
     emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', e.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
-        .then((result) => {
+        .then((result: emailjs.EmailJSResponseStatus) => {
             console.log(result.text);
             Swal.fire({
                 title: 'Thank you!!',
                 text: 'The email has been correctly sent',
-                icon: 'success' as 'success',
+                icon: 'success',
                 confirmButtonText: 'OK',
                 background: '#1a202c', // Fondo oscuro
                 color: '#fff', // Texto blanco
@@ -25,7 +25,7 @@ const sendEmail = (e: Event) => {
                     window.location.href = '/contact'; // Redirigir al usuario a la página /contact
                 }
             });
-        }, (error) => {
+        }, (error: { text: string }) => {
             console.log(error.text);
             const formStatus = document.getElementById('form-status');
             if (formStatus) {
@@ -59,12 +59,12 @@ document.getElementById('contact-form')?.addEventListener('submit', function(eve
     event.preventDefault();
 
     emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', event.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
-        .then((result) => {
+        .then((result: emailjs.EmailJSResponseStatus) => {
             console.log(result.text);
             Swal.fire({
                 title: 'Thank you!!',
                 text: 'The email has been correctly sent',
-                icon: 'success' as 'success',
+                icon: 'success',
                 confirmButtonText: 'OK',
                 background: '#1a202c', // Fondo oscuro
                 color: '#fff', // Texto blanco
@@ -78,7 +78,7 @@ document.getElementById('contact-form')?.addEventListener('submit', function(eve
                     window.location.href = '/contact'; // Redirigir al usuario a la página /contact
                 }
             });
-        }, (error) => {
+        }, (error: { text: string }) => {
             console.log(error.text);
             const formStatus = document.getElementById('form-status');
             if (formStatus) {
