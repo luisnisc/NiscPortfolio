@@ -6,7 +6,7 @@ const sendEmail = (e: Event) => {
     e.preventDefault();
 
     emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', e.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
-        .then((result: emailjs.EmailJSResponseStatus) => {
+        .then((result) => {
             console.log(result.text);
             Swal.fire({
                 title: 'Thank you!!',
@@ -25,7 +25,7 @@ const sendEmail = (e: Event) => {
                     window.location.href = '/contact'; // Redirigir al usuario a la página /contact
                 }
             });
-        }, (error: { text: string }) => {
+        }, (error) => {
             console.log(error.text);
             const formStatus = document.getElementById('form-status');
             if (formStatus) {
@@ -37,7 +37,7 @@ const sendEmail = (e: Event) => {
 };
 ---
 
-<form id="contact-form" class="mt-8" onsubmit={sendEmail}>
+<form id="contact-form" class="mt-8" on:submit={sendEmail}>
     <label for="name" class="block text-white">Name:</label>
     <input type="text" id="name" name="name" required class="w-full p-2 mt-2 mb-4 bg-gray-800 text-white border border-gray-600 rounded"/>
     
@@ -59,7 +59,7 @@ document.getElementById('contact-form')?.addEventListener('submit', function(eve
     event.preventDefault();
 
     emailjs.sendForm('service_bztxy9o', 'template_5qvbwju', event.target as HTMLFormElement, 'ZniNuIPP76QlY4VtJ')
-        .then((result: emailjs.EmailJSResponseStatus) => {
+        .then((result) => {
             console.log(result.text);
             Swal.fire({
                 title: 'Thank you!!',
@@ -78,7 +78,7 @@ document.getElementById('contact-form')?.addEventListener('submit', function(eve
                     window.location.href = '/contact'; // Redirigir al usuario a la página /contact
                 }
             });
-        }, (error: { text: string }) => {
+        }, (error) => {
             console.log(error.text);
             const formStatus = document.getElementById('form-status');
             if (formStatus) {
