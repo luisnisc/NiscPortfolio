@@ -2,51 +2,42 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 
+type Project = {
+  slug: string;
+  data: {
+    title: string;
+    img: string;
+    link: string;
+  };
+};
+
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
 
-  return projects.map((project: { slug: string }) => ({
+  return projects.map((project: Project) => ({
     params: { id: project.slug },
     props: { project }
   }));
 }
 
-export async function get({ params }) {
-  const projects = await getCollection("projects");
-  const project = projects.find((p) => p.slug === params.id);
-
-  if (!project) {
-    return {
-      status: 404,
-      body: "Project not found",
-    };
-  }
-
-  const { Content } = await render(project);
-
-  return {
-    props: {
-      project,
-      Content,
-    },
-  };
-}
-
-const { project, Content } = Astro.props;
-const { data, slug } = project;
+const { project } = Astro.props as { project: Project };
+const { slug, data } = project;
 const { title, img, link } = data;
+
+const { Content } = await render(project);
 ---
 <Layout title={`${title} - Project`}>
   <div class="flex gap-12 text-white mt-36">
     <aside class="flex flex-col items-center gap-4">
       <a href='/projects' class="hover:underline hover:opacity-100 opacity-70">← Volver atrás</a>
       <a target="_blank" href={link}>
-        <img transition:name={`img-${slug}`} class="rounded w-96" src={`/${img}`} alt={title} />
-      </a>
+      <img transition:name={`img-${slug}`} class="rounded w-96" src={`/${img}`} alt={title} />
+    </a>
     </aside>
 
     <main class="max-w-3xl">
       <h1 transition:name={`title-${slug}`} class="text-4xl font-bold mb-4 text-white ">{title}</h1>
+      <p><Content/></p>
       <div class="prose prose-invert">
         <Content />
       </div>
