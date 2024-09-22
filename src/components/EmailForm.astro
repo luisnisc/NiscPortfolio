@@ -13,30 +13,31 @@ const sendEmail = async (e: Event) => {
             text: 'The email has been correctly sent',
             icon: 'success',
             confirmButtonText: 'OK',
-            background: '#1a202c', // Fondo oscuro
-            color: '#fff', // Texto blanco
-            confirmButtonColor: 'purple', // Color del botón de confirmación
-            customClass: {
-                title: 'swal2-title',
-                content: 'swal2-content'
-            }
+            background: '#1a202c', 
+            color: '#fff', 
+            confirmButtonColor: 'purple', 
         });
         if (swalResult.isConfirmed) {
-            window.location.href = '/contact'; // Redirigir al usuario a la página /contact
+            window.location.href = '/contact'; 
         }
     } catch (error) {
-        console.log(error.text);
-        const formStatus = document.getElementById('form-status');
-        if (formStatus) {
-            formStatus.textContent = 'Oops! There was a problem submitting your form.';
-        }
+        console.error(error);
+        Swal.fire({
+            title: 'Error',
+            text: 'An error occurred while sending the email',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            background: '#1a202c', 
+            color: '#fff', 
+            confirmButtonColor: 'purple', 
+        });
     }
 
     (e.target as HTMLFormElement).reset();
 };
 ---
 
-<form id="contact-form" class="mt-8" on:submit={sendEmail}>
+<form id="contact-form" class="mt-8">
     <label for="name" class="block text-white">Name:</label>
     <input type="text" id="name" name="name" required class="w-full p-2 mt-2 mb-4 bg-gray-800 text-white border border-gray-600 rounded"/>
     
