@@ -10,4 +10,12 @@ const projects = defineCollection({
   })
 })
 
-export const collections = { projects }
+const formation = defineCollection({
+  schema: z.object({
+    name: z.string(),
+    title: z.string(),
+    description: z.string(),
+  })
+})
+
+export const collections = { projects, formation }
