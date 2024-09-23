@@ -1,5 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
+console.log('Current Path:', currentPath); // Agrega este log para depurar
 const isHome = currentPath === '/';
 const isProjects = currentPath === '/projects';
 const isEducation = currentPath === '/education';
@@ -24,19 +25,3 @@ const isContact = currentPath === '/contact';
         </ul>
     </nav>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const currentPath = window.location.pathname;
-        const links = document.querySelectorAll('#navbar a');
-
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentPath) {
-                link.classList.add('bg-gradient-to-r', 'from-purple-300', 'to-purple-700', 'bg-clip-text', 'text-transparent');
-            } else {
-                link.classList.remove('bg-gradient-to-r', 'from-purple-300', 'to-purple-700', 'bg-clip-text', 'text-transparent');
-                link.classList.add('text-white');
-            }
-        });
-    });
-</script>
