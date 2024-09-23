@@ -1,12 +1,10 @@
 ---
-const currentPath = Astro.url.pathname;
-console.log('Current Path:', currentPath); // Agrega este log para depurar
+const currentPath = typeof window !== 'undefined' ? window.location.pathname : Astro.url.pathname;
 const isHome = currentPath === '/';
 const isProjects = currentPath === '/projects';
 const isEducation = currentPath === '/education';
 const isContact = currentPath === '/contact';
 ---
-
 <div id="navbar" class="flex justify-center">
     <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
         <ul class="flex items-center list-none gap-4">
