@@ -1,5 +1,6 @@
 ---
 const currentPath = Astro.url.pathname;
+console.log('Current Path:', currentPath); // Agrega este log para depurar
 const isHome = currentPath === '/';
 const isProjects = currentPath === '/projects';
 const isEducation = currentPath === '/education';
