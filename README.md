@@ -1,1 +1,1 @@
-this IS my portfolio, feel free for visit It when you want
+this is my portfolio, feel free to visit it when you want
