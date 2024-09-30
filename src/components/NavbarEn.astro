@@ -1,4 +1,5 @@
 ---
+import {Icon} from 'astro-icon/components';
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/en/home' || currentPath === '/es/home';
 const isProjects = currentPath === '/en/projects' || currentPath === '/es/projects';
@@ -9,7 +10,9 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
 ---
 
 <div class="absolute top-0 right-0 m-4 text-purple-500">
-    <button id="languageButton" class="flex">En/Es</button>
+    <button id="languageButton" class="flex">
+        <Icon name="streamline-emojis:spain" class="scale-150"/>
+    </button>
 </div>
 <div id="navbar" class="flex justify-center">
     <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
@@ -32,16 +35,16 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    document.addEventListener('click', function(event) {
-        const target = event.target as HTMLElement;
-        if (target && target.id === 'languageButton') {
-            const currentPath = window.location.pathname;
-            const isEnglish = currentPath.startsWith('/en/');
-            const newPath = isEnglish 
-                ? currentPath.replace('/en/', '/es/') 
-                : currentPath.replace('/es/', '/en/');
-            window.location.href = newPath;
-        }
+        document.addEventListener('click', function(event) {
+            const target = event.target.closest('#languageButton');
+            if (target) {
+                const currentPath = window.location.pathname;
+                const isEnglish = currentPath.startsWith('/en/');
+                const newPath = isEnglish 
+                    ? currentPath.replace('/en/', '/es/') 
+                    : currentPath.replace('/es/', '/en/');
+                window.location.href = newPath;
+            }
+        });
     });
-});
 </script>
