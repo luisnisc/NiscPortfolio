@@ -32,15 +32,16 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        document.addEventListener('click', function(event) {
-            if (event.target && event.target.id === 'languageButton') {
-                const currentPath = window.location.pathname;
-                const isEnglish = currentPath.startsWith('/en/');
-                const newPath = isEnglish 
-                    ? currentPath.replace('/en/', '/es/') 
-                    : currentPath.replace('/es/', '/en/');
-                window.location.href = newPath;
-            }
-        });
+    document.addEventListener('click', function(event) {
+        const target = event.target as HTMLElement;
+        if (target && target.id === 'languageButton') {
+            const currentPath = window.location.pathname;
+            const isEnglish = currentPath.startsWith('/en/');
+            const newPath = isEnglish 
+                ? currentPath.replace('/en/', '/es/') 
+                : currentPath.replace('/es/', '/en/');
+            window.location.href = newPath;
+        }
     });
+});
 </script>
