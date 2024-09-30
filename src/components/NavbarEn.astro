@@ -36,8 +36,9 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         document.addEventListener('click', function(event) {
-            const target = event.target.closest('#languageButton');
-            if (target) {
+            const target = event.target as HTMLElement;
+            const button = target.closest('#languageButton');
+            if (button) {
                 const currentPath = window.location.pathname;
                 const isEnglish = currentPath.startsWith('/en/');
                 const newPath = isEnglish 
