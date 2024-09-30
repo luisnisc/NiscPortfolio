@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
-import CardEducation from "../components/CardEducation.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/NavbarEn.astro";
+import CardEducation from "../../components/CardEducation.astro";
 import { getCollection } from "astro:content";
-const formation = await getCollection('formation');
+const formation = await getCollection('formationEn');
 ---
 
 <Layout title="Education">

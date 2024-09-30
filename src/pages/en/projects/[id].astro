@@ -1,5 +1,5 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 import { getCollection, render } from "astro:content";
 
 type Project = {
@@ -12,7 +12,7 @@ type Project = {
 };
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getCollection("projectsEn");
 
   return projects.map((project: Project) => ({
     params: { id: project.slug },
@@ -29,7 +29,7 @@ const { Content } = await render(project);
 <Layout title={`${title} - Project`}>
   <div class="flex gap-12 text-white mt-36">
     <aside class="flex flex-col items-center gap-4">
-      <a href='/projects' class="hover:underline hover:opacity-100 opacity-70">← Volver atrás</a>
+      <a href='/en/projects' class="hover:underline hover:opacity-100 opacity-70">← Come Back</a>
       <a target="_blank" href={link}>
       <img transition:name={`img-${slug}`} class="rounded w-96" src={`/${img}`} alt={title} />
     </a>

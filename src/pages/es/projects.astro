@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/NavbarEs.astro";
 import { getCollection } from "astro:content";
-import Navbar from "../components/Navbar.astro";
-const projects = await getCollection('projects');
+const projects = await getCollection('projectsEs');
 ---
 
 <Layout title="Projects">
@@ -16,7 +16,7 @@ const projects = await getCollection('projects');
                         const { title, img, description } = data;
                         
                         return (
-                            <a href={`/projects/${slug}`} class="mb-2 xl:mb-0 transition">
+                            <a href={`projects/${slug}`} class="mb-2 xl:mb-0 transition">
                                 <article class="flex mt-20 group hover:scale-105 transition">
                                     <img
                                         transition:name={`img-${slug}`}

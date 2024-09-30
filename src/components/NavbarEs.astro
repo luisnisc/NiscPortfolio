@@ -1,0 +1,43 @@
+---
+const currentPath = Astro.url.pathname;
+console.log('Current Path:', currentPath); // Agrega este log para depurar
+const isHome = currentPath === '/es/home';
+const isProjects = currentPath === '/es/projects';
+const isEducation = currentPath === '/es/education';
+const isContact = currentPath === '/es/contact';
+---
+<div class="absolute top-0 right-0 m-4 text-purple-500">
+    <button class="flex" id="languageButton">En/Es</button>
+</div>
+<div id="navbar" class="flex justify-center">
+    <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
+        <ul class="flex items-center list-none gap-4">
+            <li>
+                <a href="/es/home" class={`text-2xl font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isHome ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Inicio</a>
+            </li>
+            <li>
+                <a href="/es/projects" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isProjects ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Proyectos</a>
+            </li>
+            <li>
+                <a href="/es/education" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isEducation ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Formación</a>
+            </li>
+            <li>
+                <a href="/es/contact" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isContact ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Contacto</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('click', function(event) {
+            if (event.target && event.target.id === 'languageButton') {
+                const currentPath = window.location.pathname;
+                const isEnglish = currentPath.startsWith('/en/');
+                const newPath = isEnglish 
+                    ? currentPath.replace('/en/', '/es/') 
+                    : currentPath.replace('/es/', '/en/');
+                window.location.href = newPath;
+            }
+        });
+    });
+</script>

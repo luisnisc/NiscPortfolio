@@ -1,21 +1,21 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/NavbarEs.astro";
 import { Icon } from 'astro-icon/components'
-import Navbar from "../components/Navbar.astro"
 ---
 
-<Layout title="Contact">
+<Layout title="Contacto">
     <Navbar/>
     <main>
         <div class="mt-20">
-            <h1 transition:name=`contact` transition:animate="initial" class="text-4xl bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent">Contact</h1>
+            <h1 transition:name=`contact` transition:animate="initial" class="text-4xl bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent">Contacto</h1>
             <p class="text-white mt-8">
-                Feel free to contact me. I'm always looking for new opportunities to learn and grow. You can reach me at my social media accounts
+                No dudes en contactarme. Siempre estoy buscando nuevas oportunidades para aprender y crecer. Puedes encontrarme en mis cuentas de redes sociales
                 <a target="_blank" href="https://www.linkedin.com/in/luis-navascues-2b9545257" class="text-white font-bold hover:text-purple-500" style="display: inline;"><Icon name="bxl:linkedin-square" class="text-2xl ml-2" style="display: inline;"/></a>
                 <a target="_blank" href="https://www.instagram.com/lu1snisc/" class="text-white font-bold hover:text-purple-500" style="display: inline;"><Icon name="bxl:instagram" class="text-2xl ml-2" style="display: inline;"/></a>
                 <a target="_blank" href="https://www.x.com/Lu1sNisc" class="text-white hover:text-purple-500 font-bold text-xl" style="display: inline;"><Icon name="ri:twitter-x-fill" class="ml-2" style="display: inline;"/></a>
                 <a target="_blank" href="https://www.github.com/luisnisc" class="text-white font-bold hover:text-purple-500" style="display: inline;"><Icon name="bxl:github" class="text-2xl ml-2" style="display: inline;"/></a>
-                or <a href="/contact/email"><span class="bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent pl-2">Email</span></a>
+                o <a href="/contact/email"><span class="bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent pl-2">Email</span></a>
             </p>
         </div>
     </main>

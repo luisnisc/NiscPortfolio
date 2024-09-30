@@ -1,0 +1,30 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/NavbarEs.astro";
+import CardEducation from "../../components/CardEducation.astro";
+import { getCollection } from "astro:content";
+const formation = await getCollection('formationEs');
+---
+
+<Layout title="Education">
+    <Navbar/>
+    <main class="text-white">
+        <section class="container mx-auto mt-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {
+                    formation.map(item => {
+                        const { name, title, description } = item.data;
+                        return (
+                            <CardEducation
+                                name={name}
+                                title={title}
+                                description={description}
+                            />
+                        )
+                    })
+                }
+                
+            </div>
+        </section>
+    </main>
+</Layout>
