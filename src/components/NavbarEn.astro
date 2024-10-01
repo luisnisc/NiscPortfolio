@@ -1,12 +1,10 @@
 ---
-import {Icon} from 'astro-icon/components';
+import { Icon } from 'astro-icon/components';
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/en/home' || currentPath === '/es/home';
 const isProjects = currentPath === '/en/projects' || currentPath === '/es/projects';
 const isEducation = currentPath === '/en/education' || currentPath === '/es/education';
 const isContact = currentPath === '/en/contact' || currentPath === '/es/contact';
-
-
 ---
 
 <div class="absolute top-0 right-0 m-4 text-purple-500">
@@ -18,16 +16,24 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
     <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
         <ul class="flex items-center list-none gap-4">
             <li>
-                <a href="/en/home" class={`text-2xl font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isHome ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Home</a>
+                <a href="/en/home" class={`text-2xl font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isHome ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
+                    Home
+                </a>
             </li>
             <li>
-                <a href="/en/projects" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isProjects ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Projects</a>
+                <a href="/en/projects" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isProjects ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
+                    Projects
+                </a>
             </li>
             <li>
-                <a href="/en/education" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isEducation ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Education</a>
+                <a href="/en/education" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isEducation ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
+                    Education
+                </a>
             </li>
             <li>
-                <a href="/en/contact" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isContact ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>Contact</a>
+                <a href="/en/contact" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isContact ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
+                    Contact
+                </a>
             </li>
         </ul>
     </nav>
