@@ -1,4 +1,4 @@
----
+h---
 import {Icon} from 'astro-icon/components';
 const currentPath = Astro.url.pathname;
 const isHome = currentPath === '/en/home' || currentPath === '/es/home';
@@ -12,7 +12,8 @@ const isContact = currentPath === '/en/contact' || currentPath === '/es/contact'
 <div class="absolute top-0 right-0 m-4 text-purple-500">
     <button id="languageButton" class="flex">
         <Icon name="streamline-emojis:spain" class="scale-150"/>
-    </button>
+        <div style="opacity:0">Switch to Spanish</div>    
+</button>
 </div>
 <div id="navbar" class="flex justify-center">
     <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
