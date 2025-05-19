@@ -154,12 +154,12 @@ const navItems = [
     navLinks.forEach((link) => {
       if (link.getAttribute("data-active") !== "true") {
         link.addEventListener("mouseenter", () => {
-          link.style.transform = "translateY(-2px)";
-          link.style.transition = "transform 0.3s ease";
+          (link as HTMLElement).style.transform = "translateY(-2px)";
+          (link as HTMLElement).style.transition = "transform 0.3s ease";
         });
 
         link.addEventListener("mouseleave", () => {
-          link.style.transform = "translateY(0)";
+          (link as HTMLElement).style.transform = "translateY(0)";
         });
       }
     });

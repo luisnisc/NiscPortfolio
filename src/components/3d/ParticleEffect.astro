@@ -4,8 +4,8 @@
 
 <div id="particles-container" class="fixed inset-0 z-[-2]"></div>
 
-<script>
-  import { gsap } from "gsap";
+<script is:inline>
+  // @ts-nocheck
 
   class Particle {
     constructor(canvas, ctx, options = {}) {
@@ -73,8 +73,11 @@
   // Initialize and animate particles
   function initParticles() {
     const container = document.getElementById("particles-container");
+    if (!container) return;
+
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -90,6 +93,7 @@
 
     // Animation function
     function animate() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach((particle) => {

@@ -4,16 +4,17 @@
 
 <div id="canvas-container" class="absolute inset-0 z-[-1] opacity-70"></div>
 
-<script>
+<script is:inline>
+  // @ts-nocheck
   import * as THREE from "three";
   import { gsap } from "gsap";
 
   let scene, camera, renderer;
-  let nucleus,
-    orbits = [],
-    electrons = [];
-  let mouseX = 0,
-    mouseY = 0;
+  let nucleus;
+  let orbits = [];
+  let electrons = [];
+  let mouseX = 0;
+  let mouseY = 0;
 
   function init() {
     // Scene setup
@@ -30,6 +31,8 @@
 
     // Renderer setup
     const container = document.getElementById("canvas-container");
+    if (!container) return;
+
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -164,11 +167,11 @@
       16,
       segments
     );
-    const orbitMaterial = new THREE.MeshBasicMaterial({
+    const orbitMaterial = new THREE.MeshStandardMaterial({
       color: color,
       transparent: true,
       opacity: 0.5,
-      emissive: color,
+      emissive: new THREE.Color(color),
       emissiveIntensity: 0.5,
     });
 
@@ -177,9 +180,9 @@
 
   function createElectron(radius, color) {
     const electronGeometry = new THREE.SphereGeometry(radius, 16, 16);
-    const electronMaterial = new THREE.MeshBasicMaterial({
+    const electronMaterial = new THREE.MeshStandardMaterial({
       color: color,
-      emissive: color,
+      emissive: new THREE.Color(color),
       emissiveIntensity: 1,
     });
 
@@ -244,13 +247,15 @@
     requestAnimationFrame(animate);
 
     // Update nucleus shader time
-    if (nucleus.material.uniforms) {
+    if (nucleus && nucleus.material && nucleus.material.uniforms) {
       nucleus.material.uniforms.time.value += 0.01;
     }
 
     // Rotate nucleus slightly
-    nucleus.rotation.x += 0.002;
-    nucleus.rotation.y += 0.003;
+    if (nucleus) {
+      nucleus.rotation.x += 0.002;
+      nucleus.rotation.y += 0.003;
+    }
 
     // Update electrons position along orbits
     electrons.forEach((electron) => {
