@@ -1,58 +1,191 @@
 ---
-import {Icon} from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+
 const currentPath = Astro.url.pathname;
-const isHome = currentPath === '/es/home';
-const isProjects = currentPath === '/es/projects';
-const isEducation = currentPath === '/es/education';
-const isContact = currentPath === '/es/contact';
+const isHome = currentPath === "/es/home";
+const isProjects = currentPath === "/es/projects";
+const isEducation = currentPath === "/es/education";
+const isContact = currentPath === "/es/contact";
+
+// Navigation items
+const navItems = [
+  { href: "/es/home", label: "Inicio", active: isHome },
+  { href: "/es/projects", label: "Proyectos", active: isProjects },
+  { href: "/es/education", label: "Educación", active: isEducation },
+  { href: "/es/contact", label: "Contacto", active: isContact },
+];
 ---
 
-<div class="absolute top-0 right-0 m-4 text-purple-500">
-    <button class="flex" id="languageButton">
-        <Icon name="streamline-emojis:united-kingdom" class="scale-150"/>
-        <div style="opacity:0">Switch to English</div>   
-</button>
-</div>
-<div id="navbar" class="flex justify-center">
-    <nav class="flex justify-between items-center py-4 w-full max-w-4xl">
-        <ul class="flex items-center list-none gap-4">
-            <li>
-                <a href="/es/home" class={`text-2xl font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isHome ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
-                    Inicio
+<header class="fixed w-full top-0 z-50 backdrop-blur-sm bg-[#202329]/70">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/es/home" class="flex items-center">
+          <span
+            class="text-2xl font-bold bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent"
+          >
+            NISC
+          </span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:block">
+        <ul class="flex space-x-10">
+          {
+            navItems.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={`nav-link relative overflow-hidden py-2 text-lg font-medium ${
+                    item.active
+                      ? "text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-700"
+                      : "text-white hover:text-purple-300 transition-colors duration-300"
+                  }`}
+                  data-active={item.active}
+                >
+                  {item.label}
+                  {item.active && (
+                    <span class="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple-300 to-purple-700" />
+                  )}
                 </a>
-            </li>
-            <li>
-                <a href="/es/projects" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isProjects ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
-                    Proyectos
-                </a>
-            </li>
-            <li>
-                <a href="/es/education" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isEducation ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
-                    Formación
-                </a>
-            </li>
-            <li>
-                <a href="/es/contact" class={`font-bold hover:bg-gradient-to-r from-purple-300 to-purple-700 hover:bg-clip-text hover:text-transparent ${isContact ? 'bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent' : 'text-white'}`}>
-                    Contacto
-                </a>
-            </li>
+              </li>
+            ))
+          }
         </ul>
-    </nav>
-</div>
+      </nav>
+
+      <!-- Language Switcher -->
+      <div class="flex items-center">
+        <button
+          id="languageSwitcher"
+          class="flex items-center space-x-2 text-white hover:text-purple-300 transition-colors duration-300"
+        >
+          <Icon name="circle-flags:gb" class="w-6 h-6" />
+          <span class="sr-only md:not-sr-only text-sm">EN</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden flex items-center">
+        <button id="mobileMenuButton" class="text-white focus:outline-none">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobileMenu"
+    class="hidden md:hidden bg-[#202329]/95 backdrop-blur-md"
+  >
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class={`block px-3 py-2 rounded-md text-base font-medium ${
+              item.active
+                ? "text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-purple-700"
+                : "text-white hover:text-purple-300"
+            }`}
+            data-active={item.active}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</header>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.addEventListener('click', function(event) {
-            const target = event.target as HTMLElement;
-            const button = target.closest('#languageButton');
-            if (button) {
-                const currentPath = window.location.pathname;
-                const isEnglish = currentPath.startsWith('/en/');
-                const newPath = isEnglish 
-                    ? currentPath.replace('/en/', '/es/') 
-                    : currentPath.replace('/es/', '/en/');
-                window.location.href = newPath;
-            }
-        });
+  // Handle mobile menu toggle
+  const mobileMenuButton = document.getElementById("mobileMenuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener("click", () => {
+      if (mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.remove("hidden");
+        // Animate in
+        mobileMenu.style.animation = "fadeIn 0.3s ease forwards";
+      } else {
+        // Animate out then hide
+        mobileMenu.style.animation = "fadeOut 0.3s ease forwards";
+        setTimeout(() => {
+          mobileMenu.classList.add("hidden");
+        }, 300);
+      }
     });
+  }
+
+  // Language switcher functionality
+  const languageSwitcher = document.getElementById("languageSwitcher");
+  if (languageSwitcher) {
+    languageSwitcher.addEventListener("click", () => {
+      const currentPath = window.location.pathname;
+      const isSpanish = currentPath.startsWith("/es/");
+      const newPath = isSpanish
+        ? currentPath.replace("/es/", "/en/")
+        : currentPath.replace("/en/", "/es/");
+      window.location.href = newPath;
+    });
+  }
+
+  // Add animation for nav link hover effect
+  document.addEventListener("DOMContentLoaded", () => {
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      if (link.getAttribute("data-active") !== "true") {
+        link.addEventListener("mouseenter", () => {
+          link.style.transform = "translateY(-2px)";
+          link.style.transition = "transform 0.3s ease";
+        });
+
+        link.addEventListener("mouseleave", () => {
+          link.style.transform = "translateY(0)";
+        });
+      }
+    });
+  });
 </script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+  }
+</style>

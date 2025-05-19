@@ -2,42 +2,144 @@
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/NavbarEn.astro";
 import { getCollection } from "astro:content";
-const projects = await getCollection('projectsEn');
+import ParticleEffect from "../../components/3d/ParticleEffect.astro";
+import { Icon } from "astro-icon/components";
+
+const projects = await getCollection("projectsEn");
 ---
 
 <Layout title="Projects">
-    <Navbar/>
-    <main>
-        <div class="mt-10 flex justify-center scale-110">
-            <div id="projects" class="w-full max-w-4xl">
-                {
-                    projects.map(project => {
-                        const { slug, data } = project;
-                        const { title, img, description } = data;
-                        
-                        return (
-                            <a href={`projects/${slug}`} class="mb-2 xl:mb-0 transition">
-                                <article class="flex mt-20 group hover:scale-105 transition">
-                                    <img
-                                        transition:name={`img-${slug}`}
-                                        class="mr-5 w-48 rounded"
-                                        src={`/${img}`}
-                                        alt={title}
-                                    />
-                                    <div class="flex flex-col justify-center">
-                                        <h2 
-                                            transition:name={`title-${slug}`}
-                                            class="mb-2 text-2xl font-bold leading-tight text-white group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:to-purple-700 group-hover:bg-clip-text group-hover:text-transparent ease-in-out group-hover:opacity-100">
-                                            {title}
-                                        </h2>
-                                        <p class="mb-4 text-gray-300 max-w-sm">{description}</p>
-                                    </div>
-                                </article>
-                            </a>
-                        );
-                    })
-                }
-            </div>
-        </div>
-    </main>
+  <ParticleEffect />
+  <Navbar />
+  <main class="pt-32 pb-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h1
+        class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent"
+      >
+        My Projects
+      </h1>
+
+      <div class="grid grid-cols-1 gap-16">
+        {
+          projects.map((project, index) => {
+            const { slug, data } = project;
+            const { title, img, description } = data;
+            const isEven = index % 2 === 0;
+
+            return (
+              <div class="project-card">
+                <a
+                  href={`projects/${slug}`}
+                  class={`flex flex-col ${isEven ? "md:flex-row" : "md:flex-row-reverse"} items-center group`}
+                >
+                  <div class="project-image-container w-full md:w-2/5 mb-6 md:mb-0 relative overflow-hidden rounded-xl">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-900/50 opacity-60 z-10 group-hover:opacity-40 transition-opacity duration-300" />
+                    <img
+                      transition:name={`img-${slug}`}
+                      class="w-full h-64 object-cover rounded-xl transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                      src={`/${img}`}
+                      alt={title}
+                    />
+                  </div>
+
+                  <div
+                    class={`w-full md:w-3/5 ${isEven ? "md:pl-10" : "md:pr-10"}`}
+                  >
+                    <h2
+                      transition:name={`title-${slug}`}
+                      class="text-3xl font-bold mb-4 text-white group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:to-purple-700 group-hover:bg-clip-text group-hover:text-transparent transition-colors duration-300"
+                    >
+                      {title}
+                    </h2>
+
+                    <p class="text-gray-300 mb-6 text-lg">{description}</p>
+
+                    <div class="inline-flex items-center text-purple-400 group-hover:text-purple-300 transition-colors duration-300">
+                      <span class="mr-2">View Project</span>
+                      <Icon
+                        name="mdi:arrow-right"
+                        class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                      />
+                    </div>
+                  </div>
+                </a>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  .project-card {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(
+      45deg,
+      #d8b4fe20,
+      #7e22ce20,
+      transparent,
+      transparent,
+      #7e22ce20,
+      #d8b4fe20
+    );
+    z-index: -1;
+    border-radius: 1rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .project-card:hover::before {
+    opacity: 1;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Add subtle animation to project cards on page load */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .project-card {
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: calc(var(--index) * 0.1s);
+    opacity: 0;
+  }
+
+  .project-card:nth-child(1) {
+    --index: 0;
+  }
+
+  .project-card:nth-child(2) {
+    --index: 1;
+  }
+
+  .project-card:nth-child(3) {
+    --index: 2;
+  }
+
+  .project-card:nth-child(4) {
+    --index: 3;
+  }
+
+  .project-card:nth-child(5) {
+    --index: 4;
+  }
+</style>

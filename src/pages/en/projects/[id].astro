@@ -1,6 +1,9 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/NavbarEn.astro";
 import { getCollection, render } from "astro:content";
+import ParticleEffect from "../../../components/3d/ParticleEffect.astro";
+import { Icon } from "astro-icon/components";
 
 type Project = {
   slug: string;
@@ -16,7 +19,7 @@ export async function getStaticPaths() {
 
   return projects.map((project: Project) => ({
     params: { id: project.slug },
-    props: { project }
+    props: { project },
   }));
 }
 
@@ -26,21 +29,165 @@ const { title, img, link } = data;
 
 const { Content } = await render(project);
 ---
-<Layout title={`${title} - Project`}>
-  <div class="flex gap-12 text-white mt-36">
-    <aside class="flex flex-col items-center gap-4">
-      <a href='/en/projects' class="hover:underline hover:opacity-100 opacity-70">← Come Back</a>
-      <a target="_blank" href={link}>
-      <img transition:name={`img-${slug}`} class="rounded w-96" src={`/${img}`} alt={title} />
-    </a>
-    </aside>
 
-    <main class="max-w-3xl">
-      <h1 transition:name={`title-${slug}`} class="text-4xl font-bold mb-4  bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent">{title}</h1>
-      <p><Content/></p>
-      <div class="prose prose-invert">
-        <Content />
+<Layout title={`${title} - Project`}>
+  <ParticleEffect />
+  <Navbar />
+
+  <main class="min-h-screen pt-32 pb-20">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col xl:flex-row gap-10 xl:gap-16">
+        <aside
+          class="w-full xl:w-2/5 flex flex-col items-center xl:sticky xl:top-40 xl:self-start"
+        >
+          <div class="w-full max-w-md mb-6">
+            <a
+              href="/en/projects"
+              class="inline-flex items-center text-purple-300 hover:text-purple-400 transition-colors duration-300 mb-6"
+            >
+              <Icon name="mdi:arrow-left" class="w-5 h-5 mr-2" />
+              <span>Back to Projects</span>
+            </a>
+
+            <div class="relative group">
+              <div
+                class="absolute -inset-2 bg-gradient-to-r from-purple-500/20 to-purple-700/20 rounded-2xl blur-md opacity-75 group-hover:opacity-100 transition duration-500"
+              >
+              </div>
+              <div class="relative">
+                <a
+                  target="_blank"
+                  href={link}
+                  class="block relative rounded-xl overflow-hidden group"
+                >
+                  <div
+                    class="absolute inset-0 bg-gradient-to-tr from-purple-500/40 to-purple-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center"
+                  >
+                    <div
+                      class="bg-black/60 rounded-full p-3 transform scale-0 group-hover:scale-100 transition-transform duration-300"
+                    >
+                      <Icon
+                        name="mdi:link-variant"
+                        class="w-8 h-8 text-white"
+                      />
+                    </div>
+                  </div>
+                  <img
+                    transition:name={`img-${slug}`}
+                    class="w-full rounded-xl object-cover shadow-2xl shadow-purple-900/20 transform group-hover:scale-105 transition-transform duration-500"
+                    src={`/${img}`}
+                    alt={title}
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <a
+                href={link}
+                target="_blank"
+                class="w-full group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white rounded-lg overflow-hidden bg-gradient-to-r from-purple-600 to-purple-900 shadow-md hover:shadow-lg transition-all duration-300 ease-out"
+              >
+                <span class="relative z-10 flex items-center">
+                  <span>Visit Project</span>
+                  <Icon
+                    name="mdi:open-in-new"
+                    class="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
+                  />
+                </span>
+                <span
+                  class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+                ></span>
+              </a>
+            </div>
+          </div>
+        </aside>
+
+        <article class="w-full xl:w-3/5">
+          <h1
+            transition:name={`title-${slug}`}
+            class="text-4xl md:text-5xl font-bold mb-8 bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent"
+          >
+            {title}
+          </h1>
+
+          <div
+            class="prose prose-invert prose-lg max-w-none prose-headings:text-purple-300 prose-a:text-purple-300 hover:prose-a:text-purple-400 prose-strong:text-purple-200 prose-blockquote:border-purple-500 prose-code:text-purple-300 text-gray-300"
+          >
+            <Content />
+          </div>
+        </article>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  article :global(h2) {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  article :global(h3) {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  article :global(p) {
+    margin-bottom: 1.25rem;
+    line-height: 1.8;
+  }
+
+  article :global(ul) {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  article :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  article :global(a) {
+    color: #c084fc;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  article :global(a:hover) {
+    color: #a855f7;
+    text-decoration: underline;
+  }
+
+  article :global(pre) {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    background-color: #1a1c23;
+    border: 1px solid rgba(126, 34, 206, 0.2);
+  }
+
+  article :global(code) {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.9em;
+  }
+
+  article :global(blockquote) {
+    border-left: 4px solid #7e22ce;
+    padding-left: 1rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    color: #a4a4a4;
+  }
+
+  article :global(img) {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+  }
+</style>

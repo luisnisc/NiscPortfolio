@@ -1,30 +1,149 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/NavbarEs.astro";
-import CardEducation from "../../components/CardEducation.astro";
 import { getCollection } from "astro:content";
+import ParticleEffect from '../../components/3d/ParticleEffect.astro';
+import { Icon } from 'astro-icon/components';
+
 const formation = await getCollection('formationEs');
 ---
 
-<Layout title="Education">
+<Layout title="Educación">
+    <ParticleEffect />
     <Navbar/>
-    <main class="text-white">
-        <section class="container mx-auto mt-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {
-                    formation.map(item => {
-                        const { name, title, description } = item.data;
-                        return (
-                            <CardEducation
-                                name={name}
-                                title={title}
-                                description={description}
-                            />
-                        )
-                    })
-                }
+    <main class="text-white pt-32 pb-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent">
+                Educación y Formación
+            </h1>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-300 to-purple-700"></div>
                 
+                <!-- Education Items -->
+                <div class="space-y-20">
+                    {
+                        formation.map((item, index) => {
+                            const { name, title, description, timeframe, skills } = item.data;
+                            const isEven = index % 2 === 0;
+                            
+                            return (
+                                <div class="education-card relative">
+                                    <!-- Timeline Circle for Desktop -->
+                                    <div class="hidden md:block absolute left-1/2 top-0 w-6 h-6 -ml-3 rounded-full bg-purple-600 border-4 border-gray-900 z-10 timeline-dot"></div>
+                                    
+                                    <div class={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-16`}>
+                                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-[#1a1c23] rounded-xl shadow-xl border border-purple-900/20 hover:border-purple-500/30 transition-all duration-300 edu-item group">
+                                            <div class="mb-4">
+                                                {timeframe && (
+                                                    <span class="inline-block px-3 py-1 text-sm bg-purple-900/40 text-purple-300 rounded-full mb-3">
+                                                        {timeframe}
+                                                    </span>
+                                                )}
+                                                <h2 class="text-2xl md:text-3xl font-bold group-hover:bg-gradient-to-r group-hover:from-purple-300 group-hover:to-purple-700 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">{name}</h2>
+                                                <h3 class="text-xl text-gray-400 mt-2">{title}</h3>
+                                            </div>
+                                            
+                                            <p class="text-gray-300 mb-6">{description}</p>
+                                            
+                                            {skills && skills.length > 0 && (
+                                                <div>
+                                                    <h4 class="text-lg font-medium text-purple-300 mb-3">Habilidades Clave</h4>
+                                                    <div class="flex flex-wrap gap-2">
+                                                        {skills.map((skill: string) => (
+                                                            <span class="px-3 py-1 bg-purple-900/30 text-purple-200 rounded-full text-sm">
+                                                                {skill}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        <div class="hidden md:flex md:w-1/2 items-center justify-center">
+                                            {isEven ? (
+                                                <div class="flex justify-end w-full">
+                                                    <div class="education-icon w-24 h-24 rounded-full bg-purple-900/20 flex items-center justify-center transform transition-transform duration-500 group-hover:scale-110">
+                                                        <Icon name={index === 0 ? "mdi:school" : index === 1 ? "mdi:certificate" : index === 2 ? "mdi:book-open-page-variant" : "mdi:certificate-outline"} class="w-12 h-12 text-purple-300" />
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div class="flex justify-start w-full">
+                                                    <div class="education-icon w-24 h-24 rounded-full bg-purple-900/20 flex items-center justify-center transform transition-transform duration-500 group-hover:scale-110">
+                                                        <Icon name={index === 0 ? "mdi:school" : index === 1 ? "mdi:certificate" : index === 2 ? "mdi:book-open-page-variant" : "mdi:certificate-outline"} class="w-12 h-12 text-purple-300" />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })
+                    }
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 </Layout>
+
+<style>
+    .education-card {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+        animation-delay: calc(var(--index) * 0.2s);
+    }
+    
+    .education-card:nth-child(1) {
+        --index: 0;
+    }
+    
+    .education-card:nth-child(2) {
+        --index: 1;
+    }
+    
+    .education-card:nth-child(3) {
+        --index: 2;
+    }
+    
+    .education-card:nth-child(4) {
+        --index: 3;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .timeline-dot {
+        box-shadow: 0 0 0 5px rgba(168, 85, 247, 0.2);
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+        }
+    }
+    
+    .edu-item {
+        transition: transform 0.3s ease;
+    }
+    
+    .edu-item:hover {
+        transform: translateY(-5px);
+    }
+</style>

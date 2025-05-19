@@ -1,18 +1,182 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/NavbarEs.astro';
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/NavbarEs.astro";
+import AnimatedSphere from "../../components/3d/AnimatedSphere.astro";
+import ParticleEffect from "../../components/3d/ParticleEffect.astro";
+import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Nisc">
-    <Navbar/>
-    <main>
-        <div class="text-center mt-20">
-            <h1 class="text-4xl text-white"> Bienvenido al portafolio de <span class="bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent">Nisc</span></h1>
-            <p class="text-white mt-8"> Hola, soy Nisc, un desarrollador full-stack. Me encanta construir aplicaciones web y resolver problemas. Actualmente estoy estudiando formación profesional superior en desarrollo web. Me apasiona aprender nuevas tecnologías y construir proyectos. Siempre estoy buscando nuevas oportunidades para aprender y crecer. No dudes en revisar mis proyectos y contactarme.
-            </p>
+<Layout title="Nisc | Desarrollador Full-stack">
+  <ParticleEffect />
+  <AnimatedSphere />
+  <Navbar />
+
+  <main class="relative pt-32 md:pt-40 overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section class="flex flex-col items-center text-center">
+        <h1
+          class="text-5xl md:text-7xl font-bold text-white leading-tight mb-6"
+        >
+          Bienvenido al <span
+            class="inline-block animate-pulse bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent"
+            >Portafolio</span
+          > de NISC
+        </h1>
+
+        <p
+          class="text-lg md:text-xl text-gray-300 max-w-3xl mb-10 leading-relaxed"
+        >
+          Soy un <span class="text-purple-300 font-medium"
+            >desarrollador full-stack</span
+          > apasionado por construir aplicaciones web innovadoras. Actualmente estudio
+          formación profesional superior en desarrollo web, ampliando constantemente
+          mis habilidades y buscando nuevos desafíos que afrontar.
+        </p>
+
+        <div
+          class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-16"
+        >
+          <a
+            href="/es/projects"
+            class="group relative inline-flex items-center justify-center px-8 py-3 font-medium text-white rounded-lg overflow-hidden bg-gradient-to-r from-purple-600 to-purple-900 shadow-md hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-1"
+          >
+            <span class="relative z-10">Ver Proyectos</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+            ></span>
+          </a>
+
+          <a
+            href="/es/contact"
+            class="group relative inline-flex items-center justify-center px-8 py-3 font-medium rounded-lg overflow-hidden border border-purple-500 text-white transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md"
+          >
+            <span class="relative z-10">Contáctame</span>
+            <span
+              class="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-purple-900/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+            ></span>
+          </a>
         </div>
-    </main>
+      </section>
+
+      <section class="mt-16 md:mt-24 mb-20">
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10"
+        >
+          <!-- Skill Card 1 -->
+          <div
+            class="skill-card bg-[#1a1c23] p-6 rounded-xl border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300 group"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-purple-900/20 rounded-lg mr-4 group-hover:bg-purple-900/40 transition-colors duration-300"
+              >
+                <Icon name="mdi:code-tags" class="w-7 h-7 text-purple-400" />
+              </div>
+              <h3 class="text-xl font-bold text-white">
+                Desarrollo Full-Stack
+              </h3>
+            </div>
+            <p class="text-gray-300">
+              Creando experiencias fluidas desde el frontend hasta el backend
+              utilizando frameworks y tecnologías modernas.
+            </p>
+          </div>
+
+          <!-- Skill Card 2 -->
+          <div
+            class="skill-card bg-[#1a1c23] p-6 rounded-xl border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300 group"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-purple-900/20 rounded-lg mr-4 group-hover:bg-purple-900/40 transition-colors duration-300"
+              >
+                <Icon name="mdi:responsive" class="w-7 h-7 text-purple-400" />
+              </div>
+              <h3 class="text-xl font-bold text-white">Diseño Responsive</h3>
+            </div>
+            <p class="text-gray-300">
+              Elaborando interfaces que se ven y funcionan de manera óptima en
+              todos los dispositivos y tamaños de pantalla.
+            </p>
+          </div>
+
+          <!-- Skill Card 3 -->
+          <div
+            class="skill-card bg-[#1a1c23] p-6 rounded-xl border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300 group"
+          >
+            <div class="flex items-center mb-4">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-purple-900/20 rounded-lg mr-4 group-hover:bg-purple-900/40 transition-colors duration-300"
+              >
+                <Icon name="mdi:brain" class="w-7 h-7 text-purple-400" />
+              </div>
+              <h3 class="text-xl font-bold text-white">
+                Resolución de Problemas
+              </h3>
+            </div>
+            <p class="text-gray-300">
+              Abordando problemas complejos con pensamiento analítico y
+              soluciones creativas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-24 mb-24 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
+          Construyamos Algo Increíble
+        </h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto mb-10">
+          Siempre estoy buscando nuevas oportunidades para aprender, crecer y
+          colaborar en proyectos emocionantes.
+        </p>
+        <div class="flex justify-center gap-6">
+          <a
+            href="/es/projects"
+            class="text-purple-300 hover:text-purple-400 transition-colors"
+          >
+            <span class="sr-only">Ver Proyectos</span>
+            <Icon name="mdi:rocket-launch" class="w-8 h-8" />
+          </a>
+          <a
+            href="/es/education"
+            class="text-purple-300 hover:text-purple-400 transition-colors"
+          >
+            <span class="sr-only">Ver Educación</span>
+            <Icon name="mdi:school" class="w-8 h-8" />
+          </a>
+          <a
+            href="/es/contact"
+            class="text-purple-300 hover:text-purple-400 transition-colors"
+          >
+            <span class="sr-only">Contacto</span>
+            <Icon name="mdi:email" class="w-8 h-8" />
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
 </Layout>
+
 <style>
-    
+  .skill-card {
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-8px);
+  }
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 </style>
