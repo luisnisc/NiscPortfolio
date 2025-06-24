@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/NavbarEn.astro";
 import AnimatedSphere from "../../components/3d/AnimatedSphere.astro";
 import ParticleEffect from "../../components/3d/ParticleEffect.astro";
+import AstroIcon from "../../components/icons/AstroIcon.astro";
 import { Icon } from "astro-icon/components";
 ---
 
@@ -19,7 +20,7 @@ import { Icon } from "astro-icon/components";
         >
           Welcome to <span
             class="inline-block animate-pulse bg-gradient-to-r from-purple-300 to-purple-700 bg-clip-text text-transparent"
-            >NISC</span
+            >Luis Navascués</span
           > Portfolio
         </h1>
 
@@ -120,6 +121,163 @@ import { Icon } from "astro-icon/components";
         </div>
       </section>
 
+      <!-- Tech Stack Section -->
+      <section class="mt-16 md:mt-24 mb-16 md:mb-24">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+            My Tech Stack
+          </h2>
+          <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            The tools and technologies I use to create exceptional digital
+            experiences
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
+          <!-- Frontend Technologies -->
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:react" class="w-10 h-10 text-cyan-400" />
+            </div>
+            <span class="tech-label">React</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <AstroIcon class="w-10 h-10" size="40" />
+            </div>
+            <span class="tech-label">Astro</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon
+                name="mdi:language-typescript"
+                class="w-10 h-10 text-blue-600"
+              />
+            </div>
+            <span class="tech-label">TypeScript</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:tailwind" class="w-10 h-10 text-teal-400" />
+            </div>
+            <span class="tech-label">Tailwind CSS</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:motion-play" class="w-10 h-10 text-pink-500" />
+            </div>
+            <span class="tech-label">Framer Motion</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:cube-outline" class="w-10 h-10 text-orange-400" />
+            </div>
+            <span class="tech-label">Three.js</span>
+          </div>
+
+          <!-- Backend & Tools -->
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:nodejs" class="w-10 h-10 text-green-500" />
+            </div>
+            <span class="tech-label">Node.js</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon
+                name="mdi:language-python"
+                class="w-10 h-10 text-blue-400"
+              />
+            </div>
+            <span class="tech-label">Python</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:database" class="w-10 h-10 text-blue-600" />
+            </div>
+            <span class="tech-label">MySQL</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:leaf" class="w-10 h-10 text-green-600" />
+            </div>
+            <span class="tech-label">MongoDB</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:api" class="w-10 h-10 text-purple-500" />
+            </div>
+            <span class="tech-label">GraphQL</span>
+          </div>
+
+          <div class="tech-card group">
+            <div class="tech-icon-container">
+              <Icon name="mdi:docker" class="w-10 h-10 text-blue-500" />
+            </div>
+            <span class="tech-label">Docker</span>
+          </div>
+        </div>
+
+        <!-- Tech Categories -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="tech-category">
+            <div class="tech-category-header">
+              <Icon
+                name="mdi:monitor-dashboard"
+                class="w-8 h-8 text-purple-400"
+              />
+              <h3 class="text-xl font-bold text-white">Frontend</h3>
+            </div>
+            <div class="tech-category-content">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Astro</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Framer Motion</span>
+              <span class="tech-tag">Three.js + GSAP</span>
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <div class="tech-category-header">
+              <Icon name="mdi:server" class="w-8 h-8 text-purple-400" />
+              <h3 class="text-xl font-bold text-white">Backend & APIs</h3>
+            </div>
+            <div class="tech-category-content">
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">API REST</span>
+              <span class="tech-tag">GraphQL</span>
+            </div>
+          </div>
+
+          <div class="tech-category">
+            <div class="tech-category-header">
+              <Icon name="mdi:tools" class="w-8 h-8 text-purple-400" />
+              <h3 class="text-xl font-bold text-white">Tools & Platforms</h3>
+            </div>
+            <div class="tech-category-content">
+              <span class="tech-tag">Git & GitHub</span>
+              <span class="tech-tag">VS Code</span>
+              <span class="tech-tag">Figma</span>
+              <span class="tech-tag">Vercel</span>
+              <span class="tech-tag">Docker</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section class="mt-24 mb-24 text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">
           Let's Build Something Amazing
@@ -164,6 +322,71 @@ import { Icon } from "astro-icon/components";
 
   .skill-card:hover {
     transform: translateY(-8px);
+  }
+
+  /* Tech Stack Styles */
+  .tech-card {
+    @apply bg-[#1a1c23] p-6 rounded-xl border border-purple-900/20 hover:border-purple-500/50 transition-all duration-300 cursor-pointer;
+    @apply flex flex-col items-center text-center;
+    transform: translateY(0) scale(1);
+  }
+
+  .tech-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    @apply shadow-lg shadow-purple-900/20;
+  }
+
+  .tech-icon-container {
+    @apply mb-3 p-3 rounded-lg bg-gradient-to-br from-purple-900/20 to-purple-900/5;
+    @apply group-hover:from-purple-800/30 group-hover:to-purple-900/10 transition-all duration-300;
+  }
+
+  .tech-label {
+    @apply text-sm font-medium text-gray-300 group-hover:text-white transition-colors duration-300;
+  }
+
+  .tech-category {
+    @apply bg-[#1a1c23] p-6 rounded-xl border border-purple-900/20 hover:border-purple-500/30 transition-all duration-300;
+  }
+
+  .tech-category-header {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .tech-category-content {
+    @apply flex flex-wrap gap-2;
+  }
+
+  .tech-tag {
+    @apply px-3 py-1 bg-purple-900/20 text-purple-300 rounded-full text-sm font-medium;
+    @apply hover:bg-purple-800/30 hover:text-purple-200 transition-all duration-200 cursor-default;
+  }
+
+  /* Animations */
+  .tech-card {
+    animation: techCardFloat 6s ease-in-out infinite;
+  }
+
+  .tech-card:nth-child(2n) {
+    animation-delay: -2s;
+  }
+
+  .tech-card:nth-child(3n) {
+    animation-delay: -4s;
+  }
+
+  @keyframes techCardFloat {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-3px) scale(1);
+    }
+  }
+
+  .tech-card:hover {
+    animation: none;
   }
 
   @keyframes floatAnimation {
