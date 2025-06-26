@@ -24,14 +24,14 @@ import { Icon } from "astro-icon/components";
         </p>
 
         <div
-          class="bg-gradient-to-br from-purple-900/30 to-purple-900/10 rounded-xl shadow-xl border border-purple-900/20 overflow-hidden mb-10 flex justify-center items-center"
+          class="bg-gradient-to-br from-purple-900/30 to-purple-900/10 rounded-xl shadow-xl border border-purple-900/20 overflow-hidden mb-10 flex justify-center items-center relative"
         >
           <div
-            class="contact-card-glow absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-purple-700/10 opacity-0 transition-opacity duration-700"
+            class="contact-card-glow absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-purple-700/10 opacity-0 transition-opacity duration-700 pointer-events-none"
           >
           </div>
 
-          <div class="grid grid-cols-1">
+          <div class="grid grid-cols-1 relative z-10">
             <!-- Contact Information -->
             <div class="p-6 md:p-10">
               <h2 class="text-2xl font-bold text-white mb-6">
@@ -82,6 +82,7 @@ import { Icon } from "astro-icon/components";
                   <div>
                     <h3 class="text-lg font-medium text-white">GitHub</h3>
                     <a
+                      target="_blank"
                       href="https://github.com/luisnisc"
                       class="text-purple-300 hover:text-purple-200 transition-colors"
                       >github.com/luisnisc</a
@@ -98,7 +99,8 @@ import { Icon } from "astro-icon/components";
                   <div>
                     <h3 class="text-lg font-medium text-white">LinkedIn</h3>
                     <a
-                      href="https://www.linkedin.com/in/luis-navascues-2b9545257/"
+                      target="_blank"
+                      href="https://www.linkedin.com/in/luis-navascu%C3%A9s-2b9545257/"
                       class="text-purple-300 hover:text-purple-200 transition-colors"
                       >linkedin.com/in/luis-navascues</a
                     >
@@ -117,7 +119,8 @@ import { Icon } from "astro-icon/components";
             <a
               href="https://github.com/luisnisc"
               target="_blank"
-              class="social-icon-link"
+              rel="noopener noreferrer"
+              class="social-icon-link block"
             >
               <div
                 class="w-12 h-12 rounded-full bg-[#1a1c23] border border-purple-900/30 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-900/20"
@@ -127,9 +130,10 @@ import { Icon } from "astro-icon/components";
             </a>
 
             <a
-              href="https://www.linkedin.com/in/luis-navascues-2b9545257/"
+              href="https://www.linkedin.com/in/luis-navascu%C3%A9s-2b9545257/"
               target="_blank"
-              class="social-icon-link"
+              rel="noopener noreferrer"
+              class="social-icon-link block"
             >
               <div
                 class="w-12 h-12 rounded-full bg-[#1a1c23] border border-purple-900/30 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-900/20"
@@ -141,7 +145,8 @@ import { Icon } from "astro-icon/components";
             <a
               href="https://twitter.com/luis1nisc"
               target="_blank"
-              class="social-icon-link"
+              rel="noopener noreferrer"
+              class="social-icon-link block"
             >
               <div
                 class="w-12 h-12 rounded-full bg-[#1a1c23] border border-purple-900/30 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-900/20"
@@ -153,7 +158,8 @@ import { Icon } from "astro-icon/components";
             <a
               href="https://instagram.com/lu1snisc"
               target="_blank"
-              class="social-icon-link"
+              rel="noopener noreferrer"
+              class="social-icon-link block"
             >
               <div
                 class="w-12 h-12 rounded-full bg-[#1a1c23] border border-purple-900/30 hover:border-purple-500/50 flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-purple-900/20"
